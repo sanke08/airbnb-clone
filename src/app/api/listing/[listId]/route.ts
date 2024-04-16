@@ -34,11 +34,11 @@ export const PUT = async (req: NextRequest, { params }: { params: { listId: stri
         const user: UserType | null = await getUser()
         if (!user) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
         const body = await req.json()
-        const { title, description, image, category, roomCount, bathroomCount, guestCount, location, price, } = createListingValidator.parse(body)
+        const { title, description, image, category, roomCount, bathroomCount, guestCount, location, price, type } = createListingValidator.parse(body)
         await db()
         const listing = await listingModal.findOne({ _id: params.listId, creator: user._id })
         if (!listing) return NextResponse.json({ message: "Listing Not found" }, { status: 404 })
-        await listingModal.findByIdAndUpdate(params.listId, { title, description, image: "kkkkk", category, roomCount, guestCount, location, price, bathroomCount })
+        await listingModal.findByIdAndUpdate(params.listId, { title, description, image: "kkkkk", category, roomCount, guestCount, location, price, bathroomCount, type })
         return NextResponse.json({ message: "Sucess" }, { status: 200 })
     } catch (error) {
         console.log(error)

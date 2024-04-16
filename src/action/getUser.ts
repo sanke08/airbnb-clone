@@ -14,7 +14,7 @@ export const getUser = async () => {
             return null;
         }
         await db()
-        const user = await userModal.findOne({ email: session.user.email as string })
+        const user = await userModal.findOne({ email: session.user.email as string }).populate("email name _id image")
         if (!user) return null
         return user
     } catch (error) {

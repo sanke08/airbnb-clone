@@ -16,6 +16,7 @@ export const BATHROOM_CNT = "BATHROOM_CNT"
 export const TITLE = "TITLE"
 export const DESCRIPTION = "DESCRIPTION"
 export const PRICE = "PRICE"
+export const TYPE = "TYPE"
 
 export const CLEAN_UP = "CLEAN_UP"
 

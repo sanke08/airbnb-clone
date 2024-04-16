@@ -23,18 +23,20 @@ export default async function RootLayout({
 
   return (
     <html lang="en" >
-      <body className="md:px-[90px]">
-        <ReduxProvider>
-          <Suspense fallback={<p>Loading....</p>}  >
-            <Navbar  />
-          </Suspense>
-          <AuthModal />
-          <FilterModal />
-          <CreateListingModal />
-          <div className=" w-full py-3">
-            {children}
-          </div>
-        </ReduxProvider>
+      <body className="">
+        <div className=" w-full h-full md:px-[90px] px-[24px]">
+          <ReduxProvider>
+            <Suspense fallback={<p>Loading....</p>}  >
+              <Navbar />
+            </Suspense>
+            <AuthModal />
+            <FilterModal />
+            <CreateListingModal />
+            <div className=" w-full py-3">
+              {children}
+            </div>
+          </ReduxProvider>
+        </div>
       </body>
     </html>
   );

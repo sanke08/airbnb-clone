@@ -14,28 +14,19 @@ import axios from 'axios';
 
 
 
-const initialDateRange = {
-    startDate: new Date(),
-    endDate: new Date(),
-};
-
 interface Props {
     price: number
-    reservations: ReservationType[]
     listingId: string,
     disabledDates: Array<any>
 }
 
 
-const ListingReservetion = ({ price, reservations, disabledDates, listingId }: Props) => {
-
+const ListingReservetionClient = ({ price,  disabledDates, listingId }: Props) => {
 
 
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
-
-
 
 
     const handleStartChange = useCallback((value: Date) => {
@@ -179,6 +170,6 @@ const ListingReservetion = ({ price, reservations, disabledDates, listingId }: P
     )
 }
 
-export default ListingReservetion
+export default ListingReservetionClient
 
 

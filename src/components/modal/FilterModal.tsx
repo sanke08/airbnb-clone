@@ -6,7 +6,7 @@ import PlaceType from '../filter/PlaceType'
 import PriceRange from '../filter/PriceRange'
 import Itentials from '../filter/Itentials'
 import Amenities from '../filter/Amenities'
-import ShowButton from './ShowButton'
+import ShowButton from '../filter/ShowButton'
 
 
 const FilterModal = () => {

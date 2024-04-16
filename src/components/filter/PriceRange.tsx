@@ -28,14 +28,14 @@ const PriceRange = () => {
                     <label htmlFor='minimum' className=' text-sm text-neutral-600 cursor-pointer'>Minimum</label>
                     <div className=' flex items-center w-full h-max'>
                         <p className='text-lg'>Rs.</p>
-                        <Input value={price.minimum} id='minimum' type="number" onChange={handleMinimum} className=' bg-white w-full text-lg text-black border-none h-fit p-0 pl-1' />
+                        <Input value={price.minimum} placeholder='0' id='minimum' type="number" onChange={handleMinimum} className=' bg-white w-full text-lg text-black border-none h-fit p-0 pl-1' />
                     </div>
                 </div>
                 <div className=' border-2  border-neutral-400 rounded-xl overflow-hidden p-2 px-4 flex flex-col w-full h-max'>
                     <label htmlFor='maximum' className=' text-sm text-neutral-600 cursor-pointer'>Maximum</label>
                     <div className=' flex items-center w-full h-max'>
                         <p className='text-lg'>Rs.</p>
-                        <Input value={price.maximum} id='maximum' onChange={handleMaximum} type="number" className=' bg-white w-full text-lg text-black border-none h-fit p-0 pl-1' />
+                        <Input value={price.maximum} placeholder='50000' id='maximum' onChange={handleMaximum} type="number" className=' bg-white w-full text-lg text-black border-none h-fit p-0 pl-1' />
                     </div>
                 </div>
             </div>

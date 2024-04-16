@@ -42,19 +42,19 @@ const Categories = () => {
     }, [router, searchParams])
 
     return (
-        <div className=' flex gap-x-3 items-center'>
-            <div className={twMerge(' w-full overflow-scroll flex items-center hidescrollbar gap-x-3 mt-1', pathname !== "/" && "hidden")}>
-                <Button onClick={() => router.push("/")} className={twMerge(' flex flex-col items-center h-max min-w-24 text-neutral-400', !searchParams.has("category") && "bg-primary hover:bg-primary text-white hover:text-white")}> <Home /> New</Button>
+        <div className={twMerge(' flex gap-x-3 items-center', pathname !== "/" && "hidden")}>
+            <div className={twMerge(' w-full overflow-scroll flex items-center hidescrollbar gap-x-2 mt-1')}>
+                <Button onClick={() => router.push("/")} className={twMerge(' flex px-6 flex-col items-center h-max min-w-max text-neutral-400', !searchParams.has("category") && "bg-primary hover:bg-primary text-white hover:text-white")}> <Home /> New</Button>
                 {
                     categories.map((category) => (
-                        <Button onClick={() => handleCat(category.label)} variant={"outline"} key={category.label} className={twMerge(' flex flex-col items-center border-none h-max min-w-24 text-neutral-500', searchParams?.get("category") === category.label && " bg-primary hover:bg-primary text-white hover:text-white",)}>
+                        <Button onClick={() => handleCat(category.label)} variant={"outline"} key={category.label} className={twMerge(' flex flex-col items-center border-none h-max relative min-w-max px-6 text-neutral-500', searchParams?.get("category") === category.label && " bg-primary hover:bg-primary text-white hover:text-white",)}>
                             <category.icon size={25} />
                             {category.label}
                         </Button>
                     ))
                 }
             </div>
-            <Button onClick={handleFilter} className=' h-full text-black w-max'>Filter</Button>
+            <Button onClick={handleFilter} className=' h-full text-black w-max border-2 border-neutral-300'>Filter</Button>
         </div>
     )
 }

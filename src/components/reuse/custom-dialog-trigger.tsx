@@ -29,9 +29,9 @@ const CustomDialogTrigger: React.FC<CustomDialogTriggerProps> = ({
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className={twMerge("block bg-white text-black min-h-[250px] max-h-full xl:w-[35%] md:w-[50%] sm:w-[70%] w-[90%] overflow-scroll hidescrollbar rounded-lg transition-all duration-500", className)} >
-        <DialogHeader >
+        <DialogHeader className=' w-max'>
           <DialogTitle className='text-[1.5em]'>{header}</DialogTitle>
-          <DialogDescription className='text-[0.8em]'>{description}</DialogDescription>
+          <DialogDescription className='text-[0.8em] w-max'>{description}</DialogDescription>
         </DialogHeader>
         {content}
       </DialogContent>

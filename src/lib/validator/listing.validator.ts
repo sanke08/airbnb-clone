@@ -9,5 +9,6 @@ export const createListingValidator = z.object({
     guestCount: z.number({ required_error: "GuestCount is required" }).min(1, "Guest must be at least"),
     location: z.string({ required_error: "Location is required" }),
     price: z.number({ required_error: "Price is required" }),
+    type: z.string({ required_error: "Type of listing is required"})
 })
 export type createListingRequest = z.infer<typeof createListingValidator>

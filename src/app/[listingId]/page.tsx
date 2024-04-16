@@ -1,12 +1,10 @@
 import React, { Suspense } from 'react'
 import ListingHead from '@/components/ListingHead'
-import ListingReservetion from '@/components/ListingReservetion'
 import listingModal from '@/lib/modals/listing.modal'
-import reservationModal from '@/lib/modals/reservation.modal'
 import { Loader } from 'lucide-react'
 import ListingInfo from '@/components/ListingInfo'
-import { ListingType, ReservationType } from '../../../global.types'
-import { eachDayOfInterval } from 'date-fns'
+import { ListingType } from '../../../global.types'
+import ListingReservationServer from '@/components/ListingReservationServer'
 
 const page = async ({ params }: { params: { listingId: string } }) => {
     if (!params.listingId || params.listingId === "undefined") return (
@@ -22,29 +20,23 @@ const page = async ({ params }: { params: { listingId: string } }) => {
             not found
         </div>
     )
-    const reservations = await reservationModal.find({ listing: params.listingId, }) as ReservationType[]
 
-    let disabledDates: any[] = []
 
-    reservations.forEach((reservation) => {
-        const range = eachDayOfInterval({
-            start: (new Date(reservation.startDate)),
-            end: (new Date(reservation.endDate)),
-        })
-        disabledDates = [...disabledDates, ...range]
-    })
-console.log(disabledDates)
 
     return (
-        <Suspense fallback={<Loader className=' w-10 h-10 m-auto  animate-spin' />} >
-            <div className=' py-2 w-full px-0'>
-                <ListingHead imgUrl={listing.image} />
-                <div className=' flex w-full'>
+        <div className=' py-2 w-full px-0'>
+            <Suspense fallback={<p className=' bg-blue-500 w-20 h-20 animate-spin' />}>
+                <ListingHead imgUrl={`${listing.image}`} />
+            </Suspense>
+            <div className=' flex w-full'>
+                <Suspense fallback={<Loader className=' w-10 h-10 m-auto  animate-spin' />} >
                     <ListingInfo listing={listing} />
-                    <ListingReservetion disabledDates={disabledDates} price={listing.price} reservations={reservations} listingId={params.listingId} />
-                </div>
+                </Suspense>
+                <Suspense fallback={<p className=' w-20 h-20 border-t-4 animate-spin' />}>
+                    <ListingReservationServer listingId={`${listing._id}`} price={listing.price} />
+                </Suspense>
             </div>
-        </Suspense>
+        </div>
     )
 }
 

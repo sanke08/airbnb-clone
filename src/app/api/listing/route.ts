@@ -12,11 +12,15 @@ export const POST = async (req: NextRequest) => {
         const user: UserType | null = await getUser()
         if (!user) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
         const body = await req.json()
-        const { title, description, image, category, roomCount, bathroomCount, guestCount, location, price, } = createListingValidator.parse(body)
+        const { title, description, image, category, roomCount, bathroomCount, guestCount, location, price, type } = createListingValidator.parse(body)
         await db()
-        await listingModal.create({ title, description, image: "kkkkk", category, roomCount, guestCount, location, price, bathroomCount, creator: user._id })
+        await listingModal.create({
+            title, description, image: "kkkkk", category, roomCount, guestCount, price, bathroomCount, creator: user._id, type,
+            location: { ...JSON.parse(location) }
+        })
         return NextResponse.json({ message: "Sucess" }, { status: 200 })
     } catch (error) {
+        console.log(error)
         if (error instanceof z.ZodError) {
             return NextResponse.json({ message: error.errors[0].message }, { status: 400 })
         }
@@ -28,27 +32,42 @@ export const POST = async (req: NextRequest) => {
 export const GET = async (req: NextRequest) => {
     try {
         const url = new URL(req.url)
-        const amenities = await url.searchParams.get("amenities")
-        const price = url.searchParams.get("price")
+        const amenities = url.searchParams.get("amenities")
         const type = url.searchParams.get("type")
         const roomCount = url.searchParams.get("rooms")
         const bathroomCount = url.searchParams.get("bathRooms")
         const bedRooms = url.searchParams.get("bedRooms")
 
         const { tv, kitchen, wifi } = JSON.parse(amenities)
-        const { minimum, maximum } = JSON.parse(price)
-        console.log(typeof minimum, typeof maximum)
+        const price = JSON.parse(url?.searchParams.get("price"))
         await db()
+        const filter: any = {}
+        if (roomCount)
+            filter.roomCount = { $gte: parseInt(roomCount) }
+        if (bathroomCount)
+            filter.bathroomCount = { $gte: parseInt(bathroomCount) }
+        if (bedRooms)
+            filter.bedRoomCount = { $gte: parseInt(bedRooms) }
+        if (type !== "both")
+            filter.type = type
+        if (price.minimum) {
+            filter.price = { $gte: price.minimum, ...filter.price }
+        }
+        if (price.maximum) {
+            filter.price = { $lte: price.maximum, ...filter.price }
+        }
+        console.log(filter)
+        // maximum:price.maximum,minimum:price.minimum,
+
+
         const items = await listingModal.countDocuments({
-            roomCount,
-            bathroomCount,
-            price: { $gte: minimum ?? 0, $lte: maximum ?? 5000 },
+            ...filter,
         })
+
         console.log(items)
 
-
-        return NextResponse.json({ message: items }, { status: 200 })
+        return NextResponse.json({ items }, { status: 200 })
     } catch (error) {
-        return NextResponse.json({ message: error }, { status: 200 })
+        return NextResponse.json({ message: error.message }, { status: 200 })
     }
 }

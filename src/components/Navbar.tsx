@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Categories from './Categories'
 import { getUser } from '@/action/getUser'
 
-const Navbar = async() => {
+const Navbar = async () => {
     const user = await getUser()
     return (
         <div className=' sticky bg-white w-full top-0 z-50 right-0 left-0'>

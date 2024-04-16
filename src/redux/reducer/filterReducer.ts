@@ -13,8 +13,8 @@ const initialState = {
         kitchen: undefined
     },
     price: {
-        minimum: 0,
-        maximum: 5000
+        minimum: undefined,
+        maximum: undefined
     }
 }
 
@@ -54,14 +54,25 @@ export const filterReducer = (state = initialState, action: any) => {
                 }
             }
         case FPRICE:
-            return {
-                ...state,
-                price: {
-                    ...state.price,
-                    minimum: action.payload.minimum ? parseInt(action.payload.minimum) : state.price.minimum,
-                    maximum: action.payload.maximum ? parseInt(action.payload.maximum) : state.price.maximum
+            if (action?.payload?.minimum?.toString().length >= 0) {
+                return {
+                    ...state,
+                    price: {
+                        ...state.price,
+                        minimum: parseInt(action.payload.minimum)
+                    }
                 }
             }
+            if (action?.payload?.maximum?.toString().length >= 0) {
+                return {
+                    ...state,
+                    price: {
+                        ...state.price,
+                        maximum: parseInt(action.payload.maximum)
+                    }
+                }
+            }
+            
         default:
             return {
                 ...state

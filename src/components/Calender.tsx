@@ -80,7 +80,7 @@ const Calender = ({ onChange, selected, className, title, disabledDates }: Prosp
                                 onClick={() => handle(day)}
                                 disabled={isDisabled || isReserve}
                                 className={twMerge(
-                                    ' w-10 h-10 rounded-full shadow-inner shadow-black/20 text-black relative p-2 border flex justify-center items-center text-center cursor-pointer hover:bg-neutral-600/15',
+                                    ' w-10 h-10 rounded-full shadow-sm text-black relative p-2 border flex justify-center items-center text-center cursor-pointer hover:bg-neutral-600/15',
                                     isToday(day) && " text-rose-700 bg-rose-400/20",
                                     isSameMonth(day, firstDatOfCurrentMonth) ? "" : "text-neutral-400",
                                     i === 0 && startcol[getDay(day)],

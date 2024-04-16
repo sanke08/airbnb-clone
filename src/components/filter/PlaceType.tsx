@@ -18,10 +18,6 @@ const PlaceType = () => {
     }
 
 
-
-
-
-
     return (
         <div className=' mt-2'>
             <p className=' font-semibold text-2xl'>Type of place</p>
@@ -31,7 +27,6 @@ const PlaceType = () => {
                 <Button onClick={() => handleChange("room")} variant={"none"} className={twMerge(' text-black w-full border rounded-none hover:bg-black/10', type === "room" && "bg-rose-500 text-white hover:bg-rose-500")}>Room</Button>
                 <Button onClick={() => handleChange("home")} variant={"none"} className={twMerge(' text-black w-full border rounded-none hover:bg-black/10', type === "home" && "bg-rose-500 text-white hover:bg-rose-500")}>Home</Button>
             </div>
-
         </div>
     )
 }

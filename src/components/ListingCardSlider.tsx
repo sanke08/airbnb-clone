@@ -14,10 +14,10 @@ const ListingCardSlider = () => {
 
 
     return (
-        <div onScroll={(e) => console.log(e.target)} className=' aspect-square flex w-full relative text-center rounded-xl overflow-scroll  flex-col align-middle snap-x snap-mandatory'>
+        <div onScroll={(e) => console.log(e.target)} className=' aspect-square flex w-full text-center rounded-xl overflow-scroll align-middle snap-x snap-mandatory'>
             {
                 images.map((image, i) => (
-                    <div key={i} className={` snap-center absolute w-full h-full translate-x-[${100 * i}%]`}>
+                    <div key={i} className={` snap-center relative w-full aspect-square `}>
                         <Image src={image} fill alt='img' loading="eager" />
                     </div>
                 ))

@@ -7,12 +7,13 @@ import { useMutation } from '@tanstack/react-query'
 import { Button } from './ui/button'
 import { DialogClose } from './ui/dialog'
 import { useDispatch } from 'react-redux'
-import { BATHROOM_CNT, DESCRIPTION, GUEST_CNT, LOCATION, OPEN_ADD_LISTING, PRICE, ROOM_CNT, SET_CATEGORY, TITLE, UPDATE_LISTING } from '@/redux/constant'
+import { BATHROOM_CNT, DESCRIPTION, GUEST_CNT, LOCATION, OPEN_ADD_LISTING, PRICE, ROOM_CNT, SET_CATEGORY, TITLE, TYPE, UPDATE_LISTING } from '@/redux/constant'
 import ErrorField from './ErrorField'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 
 const ListingAction = ({ listing }: { listing: ListingType }) => {
+    
     const dispatch = useDispatch()
 
     const handleClick = () => {
@@ -26,12 +27,13 @@ const ListingAction = ({ listing }: { listing: ListingType }) => {
         dispatch({ type: TITLE, payload: listing.title })
         dispatch({ type: DESCRIPTION, payload: listing.description })
         dispatch({ type: PRICE, payload: listing.price })
+        dispatch({ type: TYPE, payload: listing.type })
     }
 
 
     return (
         <div className=' w-max space-x-2'>
-            <CustomDialogTrigger content={<DeleteButton listingId={listing._id} title={listing.title} createdAt={listing.createdAt} />} header='Removing Listing' description='Delete existing Listing' >
+            <CustomDialogTrigger content={<DeleteButton listingId={listing._id} title={listing.title} createdAt={listing.createdAt} />} header='Remove Listing' description='Delete existing Listing' >
                 <Trash className='h-5 w-5 hover:text-primary' />
             </CustomDialogTrigger>
             <Button onClick={handleClick} variant={"none"} className=' hover:text-primary p-1'><Edit className='h-5 w-5' /></Button>

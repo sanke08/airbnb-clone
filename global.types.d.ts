@@ -18,7 +18,8 @@ export type ListingType = {
     location: string,
     price: number,
     creator: string | UserType
-    createdAt:Date
+    createdAt:Date,
+    type:string
 }
 
 export type ReservationType = {

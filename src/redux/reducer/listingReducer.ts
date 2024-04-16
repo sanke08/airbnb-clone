@@ -1,15 +1,21 @@
-import { BATHROOM_CNT, CLEAN_UP, DESCRIPTION, GUEST_CNT, LOCATION, PRICE, ROOM_CNT, SET_CATEGORY, TITLE } from "../constant";
+import { BATHROOM_CNT, CLEAN_UP, DESCRIPTION, GUEST_CNT, LOCATION, PRICE, ROOM_CNT, SET_CATEGORY, TITLE, TYPE } from "../constant";
 
 const initialState = {
     category: "",
-    location: "",
+    location: {
+        state: "",
+        country: "",
+        street: "",
+        address: ""
+    },
     bathrooms: 1,
     guests: 2,
     rooms: 1,
     title: "",
     description: "",
     price: 0,
-    _id: ""
+    _id: "",
+    type: "room"
 }
 
 
@@ -24,7 +30,10 @@ export const listingReducer = (state = initialState, action: any) => {
         case LOCATION:
             return {
                 ...state,
-                location: action.payload
+                location: {
+                    ...state.location,
+                    ...action.payload
+                }
             }
         case BATHROOM_CNT:
             return {
@@ -55,6 +64,11 @@ export const listingReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 price: parseInt(action.payload)
+            }
+        case TYPE:
+            return {
+                ...state,
+                type: action.payload
             }
         case CLEAN_UP:
             return {

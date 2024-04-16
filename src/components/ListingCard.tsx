@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import React from 'react'
-import img from "../../public/1.jpg"
 import LikeButton from './listingActionButton/LikeButton'
 import Link from 'next/link'
 import ListingCardSlider from './ListingCardSlider'
@@ -10,7 +8,7 @@ const ListingCard = ({ isFav, listingId, title, category, price }: { isFav: bool
 
     return (
         <div className=' w-full overflow-hidden relative rounded-xl transition-all duration-500 pb-3'>
-            <Link href={`/${listingId}`}>
+            <Link href={`/${listingId}`} prefetch={false}>
                 <ListingCardSlider />
             </Link>
             <Link href={`/${listingId}`}>
