@@ -32,7 +32,6 @@ const page = async ({ searchParams }: Props) => {
   if (searchParams.category) filter.category = searchParams.category
 
 
-  console.log(filter)
   const listings: ListingType[] = await listingModal.find(filter)
   const user = await getUser()
   const favourites = user ? await favouriteModal.find({ userId: user._id }) : []

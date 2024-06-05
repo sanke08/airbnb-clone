@@ -22,8 +22,8 @@ const page = async () => {
     }
     return (
         <Suspense fallback={<BoxSkeleton/>} >
-            <div className=' font-semibold pt-20 flex items-center text-rose-500 py-3'>
-                <Heart className=' fill-rose-500 h-20 w-20' />
+            <div className=' font-semibold pt-8 flex items-center py-3'>
+                <Heart className=' fill-rose-500 h-20 w-20 text-rose-500' />
                 <div>
                     <p  className=' text-2xl'>Your Favourites</p>
                     <p className=' opacity-50'>get your favourite listing</p>

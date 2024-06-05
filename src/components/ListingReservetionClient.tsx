@@ -1,7 +1,6 @@
 "use client"
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import Calender from "@/components/Calender"
-import { ReservationType } from '../../global.types';
 import { eachDayOfInterval, format, isBefore } from 'date-fns';
 import { useMutation } from '@tanstack/react-query';
 import { Button } from './ui/button';

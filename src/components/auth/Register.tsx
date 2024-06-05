@@ -49,9 +49,9 @@ const Register = ({ className, onClick }: { className: string, onClick: () => vo
     return (
         <div className={className} >
             <div className=' w-full h-full flex flex-col gap-2 pt-5'>
-                <Input onChange={(e) => userDate.current.name = e.target.value} disabled={isPending} placeholder="Name" type="text" required className=' bg-white text-black border-2 border-neutral-500/70' />
-                <Input onChange={(e) => userDate.current.email = e.target.value} disabled={isPending} placeholder="Email" type="email" required className=' bg-white text-black border-2 border-neutral-500/70' />
-                <Input onChange={(e) => userDate.current.password = e.target.value} disabled={isPending} placeholder="Password" type="password" required className=' bg-white text-black border-2 border-neutral-500/70' />
+                <Input onChange={(e) => userDate.current.name = e.target.value} disabled={isPending} placeholder="Name" type="text" required className=' bg-white text-black ' />
+                <Input onChange={(e) => userDate.current.email = e.target.value} disabled={isPending} placeholder="Email" type="email" required className=' bg-white text-black ' />
+                <Input onChange={(e) => userDate.current.password = e.target.value} disabled={isPending} placeholder="Password" type="password" required className=' bg-white text-black ' />
                 <ErrorField error={errRef.current} />
                 <Button onClick={() => register()} isLoading={isPending} variant={"none"} className=' bg-primary text-white ' >Register</Button>
                 <Button onClick={() => signIn("google")} disabled={isPending} variant={"secondary"} className='text-black border-2 border-neutral-500/50 mt-5' >

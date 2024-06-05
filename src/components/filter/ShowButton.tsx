@@ -45,9 +45,11 @@ const ShowButton = () => {
     }, [amenities, bathRooms, bedRooms, price, rooms, type])
 
     return (
-        <Button onClick={handleNav} className=' text-black '>
+        <div className=' w-full flex justify-end py-4'>
+        <Button onClick={handleNav}  className=' bg-black text-white  gap-5 hover:bg-black hover:text-white border-2 hover:border-rose-500'>
             {listings} Show
         </Button>
+        </div>
     )
 }
 

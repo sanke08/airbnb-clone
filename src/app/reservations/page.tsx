@@ -32,9 +32,9 @@ const page = async () => {
                     //  @ts-ignore
                     reservations.map((reservation: ReservationType & { listing: ListingType }) => {
                         // @ts-ignore
-                        const isFav = favourites.find((fav) => fav.listId.equals(reservation.listing._id))
+                        const isFav = favourites.find((fav) => fav.listId.equals(reservation.listing?._id))
                         return (
-                            <ReservationCard key={reservation._id} reseravtionId={reservation._id} img={reservation.listing.image} startDate={reservation.startDate} endDate={reservation.endDate} listingId={reservation.listing._id} category={reservation.listing.category} price={reservation.totalPrice} title={reservation.listing.title} isFav={!!isFav} />
+                            <ReservationCard key={reservation._id} reseravtionId={reservation._id} img={reservation.listing?.image} startDate={reservation.startDate} endDate={reservation.endDate} listingId={reservation.listing?._id} category={reservation.listing?.category} price={reservation.totalPrice} title={reservation.listing?.title} isFav={!!isFav} />
                         )
                     })
                 }

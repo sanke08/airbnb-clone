@@ -9,7 +9,6 @@ const Navbar = async () => {
     const user = await getUser()
     return (
         <div className=' sticky bg-white w-full top-0 z-50 right-0 left-0'>
-
             <div className='  w-full border-b py-3 flex justify-between items-center'>
                 <p className=' text-primary w-max text-3xl'>
                     <Link href={"/"}>

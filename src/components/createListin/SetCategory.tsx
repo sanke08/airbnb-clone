@@ -21,7 +21,7 @@ const SetCategory = ({ className }: { className: string }) => {
             <div className=' w-full grid grid-cols-2 gap-2'>
                 {
                     categories.map(category => (
-                        <Button onClick={() => handleCategory(category.label)} variant={"outline"} key={category.label} className={twMerge('p-2 rounded-lg text-black font-normal', category.label === cat && "border-2 border-rose-500")}>
+                        <Button onClick={() => handleCategory(category.label)} variant={"outline"} key={category.label} className={twMerge('p-2 rounded-lg text-black font-normal', category.label === cat && "border-2 border-neutral-900")}>
                             <category.icon />
                             <p className=' min-w-10'>
                                 {category.label}
