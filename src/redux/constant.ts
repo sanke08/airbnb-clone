@@ -17,6 +17,7 @@ export const TITLE = "TITLE"
 export const DESCRIPTION = "DESCRIPTION"
 export const PRICE = "PRICE"
 export const TYPE = "TYPE"
+export const IMAGES = "IMAGES"
 
 export const CLEAN_UP = "CLEAN_UP"
 

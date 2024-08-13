@@ -1,6 +1,8 @@
-import { Home, ShowerHead, Users } from 'lucide-react'
+import { Dot, Home, ShowerHead, Users } from 'lucide-react'
 import React from 'react'
 import { ListingType } from '../../global.types'
+import Seperator from './Seperator'
+import UserAvatar from './UserAvatar'
 
 
 
@@ -22,37 +24,38 @@ interface Props {
 
 const ListingInfo = ({ listing }: Props) => {
   return (
-    <div className=" flex flex-col h-[200vh] gap-2 w-full">
+    <div className=" flex flex-col h-[200vh] gap-4 w-full">
       <div className="flex flex-col gap-2">
-        <div className=' font-semibold text-2xl'>
-          <p>{listing.title} </p>
-          <p> Rs.{listing.price} <span className=' text-neutral-500 font-normal text-sm'>per night</span> </p>
+        <div className=' font-semibold text-3xl'>
+          {listing.title}
         </div>
-        <div className="flex flex-row items-center gap-2 ">
-          <div>Hosted by <span className=' text-xl font-semibold '>{listing.creator.name} </span></div>
-        </div>
-        <div className=" flex flex-row items-center gap-4 text-neutral-500  ">
-          <p className=' flex flex-col items-center'>
-            <Users /> {listing.guestCount}
-          </p>
-          <p className=' flex flex-col items-center'>
-            <Home /> {listing.roomCount}
-          </p>
-          <p className=' flex flex-col items-center'>
-            <ShowerHead />{listing.bathroomCount}
-          </p>
+        <div className=" flex flex-row items-center gap-2 text-neutral-500  ">
+          <div className=' flex items-center'>
+            <Dot className=' h-5 w-5' />
+            {listing.guestCount} Guests
+          </div>
+          <div className=' flex items-center'>
+            <Dot className=' h-5 w-5' /> {listing.roomCount} Rooms
+          </div>
+          <div className=' flex items-center'>
+            <Dot className=' h-5 w-5' /> {listing.bathroomCount} Bathrooms
+          </div>
         </div>
       </div>
-      <hr />
-      <div className=' flex items-center gap-1'>
-        <Home />  {listing.category}
+      <Seperator />
+      <div className=' flex gap-2 items-center'>
+        <UserAvatar className=' h-14 w-14' src='https://images.unsplash.com/photo-1609010697446-11f2155278f0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
+        <div>
+          <p className=' font-medium'>{listing.creator.name} </p>
+          <p className=' text-sm'>Host Since 1 year</p>
+        </div>
       </div>
-      <hr />
-      <div className=" text-justify text-sm font-normal text-neutral-700">
+      <Seperator />
+      <div className=" text-justify text-lg font-normal text-neutral-700">
         {listing.description}
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem impedit necessitatibus esse, quasi eveniet at libero vero optio vitae eius temporibus aliquam placeat perferendis sed eum corporis distinctio molestias ex, dolorem a rerum dolorum ut! Ea molestiae distinctio eaque iste praesentium voluptas aperiam maiores! Rem numquam deserunt autem architecto recusandae.
       </div>
-      <hr />
+      <Seperator />
     </div>
   )
 }

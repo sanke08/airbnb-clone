@@ -24,11 +24,11 @@ const page = async ({ params }: { params: { listingId: string } }) => {
 
 
     return (
-        <div className=' py-2 w-full px-0'>
+        <div className=' py-2 w-full px-[200px] h-full'>
             <Suspense fallback={<p className=' bg-blue-500 w-20 h-20 animate-spin' />}>
                 <ListingHead imgUrl={`${listing.image}`} />
             </Suspense>
-            <div className=' flex w-full'>
+            <div className=' flex w-full h-full mt-5'>
                 <Suspense fallback={<Loader className=' w-10 h-10 m-auto  animate-spin' />} >
                     <ListingInfo listing={listing} />
                 </Suspense>

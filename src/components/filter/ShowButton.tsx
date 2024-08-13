@@ -46,9 +46,9 @@ const ShowButton = () => {
 
     return (
         <div className=' w-full flex justify-end py-4'>
-        <Button onClick={handleNav}  className=' bg-black text-white  gap-5 hover:bg-black hover:text-white border-2 hover:border-rose-500'>
-            {listings} Show
-        </Button>
+            <Button onClick={handleNav} className=' bg-black text-white  gap-5 hover:bg-black hover:text-white border-2 hover:border-neutral-500'>
+                {listings} Show
+            </Button>
         </div>
     )
 }

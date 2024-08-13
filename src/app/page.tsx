@@ -40,12 +40,12 @@ const page = async ({ searchParams }: Props) => {
       <Suspense fallback={<BoxSkeleton />}  >
         {
           listings.length ?
-            <div className=' grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-5 my-3'>
+            <div className=' grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 my-3'>
               {
                 listings && listings.map(listing => {
                   const isFav = favourites.find((fav) => fav.listId.equals(listing._id))
                   return (
-                    <ListingCard key={listing._id} img={listing.image} listingId={`${listing._id}`} category={listing.category} price={listing.price} title={listing.title} isFav={!!isFav} />
+                    <ListingCard key={listing._id} img={listing.image} listingId={`${listing._id}`} category={listing.category} price={listing.price} title={listing.title} isFav={!!isFav} createdAt={listing.createdAt}/>
                   )
                 }
                 )

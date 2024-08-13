@@ -26,23 +26,23 @@ const ListingReservetionClient = ({ price,  disabledDates, listingId }: Props) =
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
-
+    
 
     const handleStartChange = useCallback((value: Date) => {
         const date = format(value, "dd-MMM-yyy")
         if (searchParams.has("end")) {
-            router.replace(`http://localhost:3000/${pathname}?start=${date}&end=${searchParams.get("end")}`)
+            router.replace(`${window.origin}/${pathname}?start=${date}&end=${searchParams.get("end")}`)
         } else {
-            router.replace(`http://localhost:3000/${pathname}?start=${date}`)
+            router.replace(`${window.origin}/${pathname}?start=${date}`)
         }
     }, [pathname, router, searchParams])
 
     const handleEndChange = useCallback((value: Date) => {
         const date = format(value, "dd-MMM-yyy")
         if (searchParams.has("start")) {
-            router.replace(`http://localhost:3000/${pathname}?start=${searchParams.get("start")}&end=${date}`)
+            router.replace(`${window.origin}/${pathname}?start=${searchParams.get("start")}&end=${date}`)
         } else {
-            router.replace(`http://localhost:3000/${pathname}?end=${date}`)
+            router.replace(`${window.origin}/${pathname}?end=${date}`)
         }
     }, [pathname, router, searchParams])
 
@@ -77,7 +77,7 @@ const ListingReservetionClient = ({ price,  disabledDates, listingId }: Props) =
         if (searchParams.get("start") && searchParams.get("end")) {
             if (searchParams.get("start").toString() === searchParams?.get("end").toString()) return
             if (!isBefore(searchParams.get("start"), searchParams.get("end"))) {
-                router.replace(`http://localhost:3000/${pathname}?start=${searchParams.get("end")}`)
+                router.replace(`${window.origin}/${pathname}?start=${searchParams.get("end")}`)
             }
         }
     }, [pathname, router, searchParams])
@@ -102,10 +102,10 @@ const ListingReservetionClient = ({ price,  disabledDates, listingId }: Props) =
 
             const isDisabled = range.some((date) => isDisabledDate(date))
             if (isDisabled) {
-                router.replace(`http://localhost:3000/${pathname}?start=${searchParams.get("end")}`)
+                router.replace(`${window.origin}/${pathname}?start=${searchParams.get("end")}`)
             }
         }
-    }, [pathname, router, searchParams])
+    }, [isDisabledDate, pathname, router, searchParams])
 
 
 

@@ -12,15 +12,16 @@ export const POST = async (req: NextRequest) => {
         const user: UserType | null = await getUser()
         if (!user) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
         const body = await req.json()
-        const { title, description, image, category, roomCount, bathroomCount, guestCount, location, price, type } = createListingValidator.parse(body)
+        const { title, description, category, roomCount, bathroomCount, guestCount, location, price, type } = createListingValidator.parse(body)
         await db()
+        console.log(body.images)
         await listingModal.create({
-            title, description, image: "kkkkk", category, roomCount, guestCount, price, bathroomCount, creator: user._id, type,
+            title, description, image: [...body.images], category, roomCount, guestCount, price, bathroomCount, creator: user._id, type,
             location: { ...JSON.parse(location) }
         })
         return NextResponse.json({ message: "Sucess" }, { status: 200 })
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         if (error instanceof z.ZodError) {
             return NextResponse.json({ message: error.errors[0].message }, { status: 400 })
         }

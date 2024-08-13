@@ -5,7 +5,8 @@ const nextConfig = {
           "uploadthing.com",
           "utfs.io",
           "lh3.googleusercontent.com",
-          "images.unsplash.com"
+          "images.unsplash.com",
+          "unsplash.com"
         ]
       }
 };

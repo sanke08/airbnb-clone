@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Edit, Loader, Trash } from 'lucide-react'
 import ListingAction from '@/components/ListingAction'
+import { BoxSkeleton } from '../page'
 
 
 
@@ -22,8 +23,7 @@ const page = async () => {
     if (!properties) return
 
     return (
-        <Suspense fallback={<Loader className=' w-32 h-32 animate-spin' />} >
-
+        <Suspense fallback={<BoxSkeleton/>} >
             <div className=' xl:px-60 lg:px-44 md:px-14 sm:px-5 pt-20'>
                 {
                     properties.map((property) => (
@@ -41,6 +41,7 @@ export default page
 
 
 const Card = ({ listing }: { listing: ListingType }) => {
+    console.log(listing.image)
     return (
         <div className=' border-b flex gap-5 items-center py-1 justify-between'>
             <Image src={img} alt='' className=' w-[5rem] rounded-xl' />

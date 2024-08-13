@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const listingchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    image: { type: String },
+    image: [{ type: String }],
     category: { type: String },
     roomCount: { type: Number },
     bathroomCount: { type: Number },

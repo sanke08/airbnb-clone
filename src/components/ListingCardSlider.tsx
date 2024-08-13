@@ -7,15 +7,11 @@ import { Button } from './ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
-const ListingCardSlider = ({ listingId }: { listingId: string }) => {
+const ListingCardSlider = ({ listingId,img }: { listingId: string ,img:Array<string>}) => {
 
     const [counter, setCounter] = useState(1)
 
-    const images = [
-        "https://utfs.io/f/7cd00b98-563d-4efb-a40a-74cdabef5c21-59mbqw.jpg",
-        "https://images.unsplash.com/photo-1642425149556-b6f90e946859?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://utfs.io/f/7cd00b98-563d-4efb-a40a-74cdabef5c21-59mbqw.jpg",
-    ]
+    const images = [...img    ]
 
     const moveForward = useCallback(() => {
         if (counter !== images.length)
@@ -28,13 +24,13 @@ const ListingCardSlider = ({ listingId }: { listingId: string }) => {
             setCounter((pre) => pre - 1)
     }, [counter])
 
-
     return (
-        <div className=' w-full relative overflow-hidden aspect-square group '>
+
+        <div className=' w-full aspect-square h-max relative group overflow-hidden rounded-xl'>
             <Link href={`/${listingId}`}>
                 {
                     images.map((image, i) => (
-                        <div key={i} className={twMerge(` bg-neutral-500 w-full h-full absolute transition-all ease-in-out duration-500 rounded-lg overflow-hidden`,
+                        <div key={i} className={twMerge(` bg-neutral-500 w-full aspect-square absolute transition-all ease-in-out duration-500 rounded-lg overflow-hidden`,
                             counter > i + 1 && " -translate-x-full",
                             counter < i + 1 && " translate-x-full",
                         )}>
@@ -44,12 +40,27 @@ const ListingCardSlider = ({ listingId }: { listingId: string }) => {
                 }
             </Link>
 
-            <Button onClick={() => moveBackward()} className={twMerge(' absolute w-[20%] p-0 m-0 h-full flex left-0 bg-gradient-to-r from-neutral-900/20  hover:from-neutral-500/10 to-white/0 justify-center items-center -translate-x-full transition-all duration-300', "group-hover:translate-x-0")}>
-                <ChevronLeft className=' h-8 w-8' />
+            <Button onClick={() => moveBackward()} className={twMerge(' absolute rounded-full w-max h-max  bg-white hover:bg-white/80 text-black p-1 m-0 flex left-0 top-1/2 -translate-y-1/2 justify-center items-center -translate-x-full transition-all duration-300 scale-0',
+                counter !== 1 && " group-hover:translate-x-1 group-hover:scale-100"
+            )}>
+                <ChevronLeft className=' h-6 w-6' />
             </Button>
-            <Button onClick={() => moveForward()} className={twMerge(' absolute w-[20%] p-0 m-0 h-full flex right-0 bg-gradient-to-l from-neutral-900/20  hover:from-neutral-500/10 to-white/0 justify-center items-center translate-x-full transition-all duration-300', "group-hover:translate-x-0")}>
-                <ChevronRight className=' h-8 w-8' />
+            <Button onClick={() => moveForward()} className={twMerge(' absolute w-max h-max rounded-full bg-white hover:bg-white/80 text-black p-1 m-0 flex right-0 top-1/2 -translate-y-1/2 justify-center items-center translate-x-full transition-all duration-300 scale-0',
+                counter !== images.length && " group-hover:-translate-x-1 group-hover:scale-100"
+            )}>
+                <ChevronRight className=' h-6 w-6' />
             </Button>
+
+            <div className=' absolute -bottom-1 py-4 gap-1 flex justify-center bg-gradient-to-t from-neutral-900 w-full items-center'>
+                {
+                    images.map((image, i) => (
+                        <div key={i} className={twMerge(' bg-white/50 h-1 w-1 rounded-full transition-all duration-500',
+                            counter === i + 1 && " w-2 h-2 bg-white/80",
+                        )}>
+                        </div>
+                    ))
+                }
+            </div>
         </div >
     )
 }

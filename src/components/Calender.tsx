@@ -24,7 +24,6 @@ const Calender = ({ onChange, selected, className, title, disabledDates }: Prosp
     const firstDatOfCurrentMonth = parse(currmonth, "MMM-yyyy", new Date())
 
 
-
     const newDays = eachDayOfInterval({
         start: startOfWeek(firstDatOfCurrentMonth),
         end: endOfWeek(endOfMonth(firstDatOfCurrentMonth))
@@ -72,8 +71,6 @@ const Calender = ({ onChange, selected, className, title, disabledDates }: Prosp
 
                         const isDisabled = isBefore(day, add(Date.now(), { days: -1 }))
                         const isReserve = disabledDates.find((d) => format(d, "dd-MMM-yyyy").toString() === format(day, "dd-MMM-yyyy").toString())
-
-
                         return (
                             <Button
                                 key={i}

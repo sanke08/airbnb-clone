@@ -60,10 +60,10 @@ export default memo(Itentials)
 const Counter = ({ onChange, value }) => {
     return (
         <div className=' space-x-4'>
-            <Button variant={"none"} onClick={() => onChange(undefined)} className={twMerge(' border border-neutral-300 hover:border-rose-500', value == undefined && "bg-rose-500 text-white")}>Any</Button>
+            <Button variant={"none"} onClick={() => onChange(undefined)} className={twMerge(' border border-neutral-300 hover:border-black', value == undefined && "bg-black text-white")}>Any</Button>
             {
                 [...Array(5)].map((i, j) => (
-                    <Button variant={"none"} onClick={() => onChange(j + 1)} className={twMerge(' border border-neutral-300 hover:border-rose-500', value === j + 1 && "bg-rose-500 text-white")} key={j}>{j + 1} </Button>
+                    <Button variant={"none"} onClick={() => onChange(j + 1)} className={twMerge(' border border-neutral-300 hover:border-black', value === j + 1 && "bg-black text-white")} key={j}>{j + 1} </Button>
                 ))
             }
         </div>

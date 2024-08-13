@@ -20,19 +20,19 @@ const BottomButtons = ({ step, onChangeStep }: Props) => {
     const router = useRouter()
     const errRef = useRef("")
 
-    const { category, location, bathrooms, guests, rooms, title, description, price,type } = useSelector((state: any) => state.listingReducer)
+    const { category, location, bathrooms, guests, rooms, title, description, price, type, images } = useSelector((state: any) => state.listingReducer)
     const { create, update, _id, } = useSelector((state: any) => state.actionReducer)
     const { mutate, isPending } = useMutation({
         mutationFn: async () => {
             const payload: createListingRequest = {
-                category, location: JSON.stringify(location), bathroomCount: bathrooms, guestCount: guests, roomCount: rooms, title, description, price, image: "hh",type
+                category, location: JSON.stringify(location), bathroomCount: bathrooms, guestCount: guests, roomCount: rooms, title, description, price, image: "hh", type
             }
             if (create) {
-                const { data } = await axios.post(`/api/listing`, payload)
+                const { data } = await axios.post(`/api/listing`, {...payload,images})
                 return data
             }
             if (update && _id) {
-                const { data } = await axios.put(`/api/listing/${_id}`, payload)
+                const { data } = await axios.put(`/api/listing/${_id}`, {...payload,images})
                 return data
             }
         },
@@ -50,14 +50,14 @@ const BottomButtons = ({ step, onChangeStep }: Props) => {
 
     return (
         <div>
-            <div className=' flex gap-x-5 px-3 w-full'>
+            <div className=' flex gap-x-5 w-full'>
                 {
                     step > 1 &&
                     <Button disabled={isPending} onClick={() => onChangeStep(step > 1 ? step - 1 : 1)} variant={"none"} className=' w-full border-2'>Back</Button>
                 }
                 {
                     step < 6 ?
-                        <Button disabled={isPending} onClick={() => onChangeStep(step + 1)} variant={"none"} className='w-full bg-primary text-white overflow-hidden'>Next</Button>
+                        <Button disabled={isPending} onClick={() => onChangeStep(step + 1)} variant={"none"} className='w-full bg-black text-white overflow-hidden'>Next</Button>
                         :
                         <Button isLoading={isPending} onClick={() => mutate()} variant={"ghost"} className='w-full bg-primary text-white overflow-hidden'>
                             {

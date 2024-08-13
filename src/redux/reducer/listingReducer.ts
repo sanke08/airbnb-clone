@@ -1,4 +1,4 @@
-import { BATHROOM_CNT, CLEAN_UP, DESCRIPTION, GUEST_CNT, LOCATION, PRICE, ROOM_CNT, SET_CATEGORY, TITLE, TYPE } from "../constant";
+import { BATHROOM_CNT, CLEAN_UP, DESCRIPTION, GUEST_CNT, IMAGES, LOCATION, PRICE, ROOM_CNT, SET_CATEGORY, TITLE, TYPE } from "../constant";
 
 const initialState = {
     category: "",
@@ -15,7 +15,8 @@ const initialState = {
     description: "",
     price: 0,
     _id: "",
-    type: "room"
+    type: "room",
+    images: []
 }
 
 
@@ -69,6 +70,11 @@ export const listingReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 type: action.payload
+            }
+        case IMAGES:
+            return {
+                ...state,
+                images: action.payload
             }
         case CLEAN_UP:
             return {

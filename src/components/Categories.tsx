@@ -1,11 +1,11 @@
 "use client"
-import { Home } from 'lucide-react'
+import {  Home, SlidersHorizontal } from 'lucide-react'
 import React, { useCallback } from 'react'
 import { Button } from './ui/button'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 import { GiBarn, GiBoatFishing, GiCactus, GiCastle, GiCaveEntrance, GiForestCamp, GiIsland, GiWindmill } from 'react-icons/gi';
-import { FaSkiing } from 'react-icons/fa';
+import {  FaSkiing } from 'react-icons/fa';
 import { BsSnow } from 'react-icons/bs';
 import { IoDiamond } from 'react-icons/io5';
 import { MdOutlineVilla } from 'react-icons/md';
@@ -18,7 +18,6 @@ const Categories = () => {
 
     const searchParams = useSearchParams()
     const router = useRouter()
-
     const pathname = usePathname()
 
     const handleCat = useCallback((cat: string) => {
@@ -42,8 +41,8 @@ const Categories = () => {
     }, [router, searchParams])
 
     return (
-        <div className={twMerge(' flex gap-x-3 items-center', pathname !== "/" && "hidden")}>
-            <div className={twMerge(' w-full overflow-scroll flex items-center hidescrollbar gap-x-2 mt-1')}>
+        <div className={twMerge(' flex gap-x-3 items-center relative', pathname !== "/" && "hidden")}>
+            <div className={twMerge(' w-full overflow-scroll relative flex items-center hidescrollbar gap-x-2 mt-1')}>
                 <Button onClick={() => router.push("/")} className={twMerge(' flex px-6 flex-col items-center h-max min-w-max text-neutral-400', !searchParams.has("category") && "bg-primary hover:bg-primary text-white hover:text-white")}> <Home /> New</Button>
                 {
                     categories.map((category) => (
@@ -54,7 +53,7 @@ const Categories = () => {
                     ))
                 }
             </div>
-            <Button onClick={handleFilter} className=' h-full text-black w-max border-2 border-neutral-300'>Filter</Button>
+            <Button onClick={handleFilter} className=' h-full text-black w-max border border-neutral-300 space-x-2'> <SlidersHorizontal className=' h-5 w-5' /> Filter</Button>
         </div>
     )
 }

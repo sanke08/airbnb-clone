@@ -28,7 +28,7 @@ const ListingReservationServer = async ({ listingId, price }: Prosp) => {
 
     return (
         <Suspense fallback={<p className=' text-black'>Loading</p>}>
-        <ListingReservetionClient disabledDates={disabledDates} price={price} listingId={listingId} />
+            <ListingReservetionClient disabledDates={disabledDates} price={price} listingId={listingId} />
         </Suspense>
     )
 }

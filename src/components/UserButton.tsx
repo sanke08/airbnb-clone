@@ -1,5 +1,5 @@
 "use client"
-import React, { Suspense, useCallback, useState } from 'react'
+import React, { Suspense, useCallback, useRef, useState } from 'react'
 import { Menu, User } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
@@ -7,30 +7,47 @@ import { Button } from './ui/button'
 import { useDispatch } from 'react-redux'
 import { CREATE_LISTING, OPEN_ADD_LISTING, OPEN_AUTH } from '@/redux/constant'
 import { UserType } from '../../global.types'
-import { signOut } from 'next-auth/react'
-import UserAvatar from './UserAvatar'
 
+import { signOut } from 'next-auth/react'
+
+import UserAvatar from './UserAvatar'
+import { useOnClickOutside } from "usehooks-ts"
 
 const UserButton = ({ user }: { user: UserType | null }) => {
 
     const router = useRouter()
     const dispatch = useDispatch()
+    const ref = useRef(null)
     const [toggle, setToggle] = useState(false)
     const [hide, sethide] = useState(true)
 
     const handleToggle = useCallback(() => {
         if (toggle) {
-            setTimeout(() => {
-                sethide(true)
-            }, 100);
-            setToggle(false)
+            handleClose()
         } else {
-            setTimeout(() => {
-                setToggle(true)
-            }, 0);
-            sethide(false)
+            handleOpen()
         }
     }, [toggle])
+
+
+    const handleClose = () => {
+        setTimeout(() => {
+            sethide(true)
+        }, 100);
+        setToggle(false)
+    }
+
+    const handleOpen = () => {
+        setTimeout(() => {
+            setToggle(true)
+        }, 0);
+        sethide(false)
+    }
+    useOnClickOutside(ref, () => {
+        handleClose()
+    })
+
+
 
 
     return (
@@ -41,7 +58,7 @@ const UserButton = ({ user }: { user: UserType | null }) => {
                     :
                     <div className=' flex items-center gap-x-2 w-max'>
                         <Button onClick={() => { dispatch({ type: CREATE_LISTING }); dispatch({ type: OPEN_ADD_LISTING }) }} variant={"none"} className=' border border-neutral-300 rounded-full shadow transition-all duration-300 hover:shadow-lg'>Airbnb your home</Button>
-                        <div className=' relative w-max'>
+                        <div ref={ref} className=' relative w-max'>
                             <Button onClick={handleToggle} className=' border-rose-400/40 border rounded-full px-2'>
                                 <Menu className=' h-5 w-5  text-black' />
                                 <Suspense fallback={<p className=' w-3 h-3 bg-neutral-500 animate-pulse' />} >
