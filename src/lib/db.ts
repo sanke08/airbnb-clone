@@ -4,7 +4,7 @@ let connect = false;
 export const db = async () => {
     try {
         if (!connect) {
-            await mongoose.connect("mongodb://127.0.0.1:27017", {
+            await mongoose.connect(process.env.MONGO_URL!, {
                 dbName: "Airnnb"
             })
             connect = true
