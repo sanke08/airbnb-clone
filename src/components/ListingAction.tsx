@@ -13,7 +13,7 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 
 const ListingAction = ({ listing }: { listing: ListingType }) => {
-    
+
     const dispatch = useDispatch()
 
     const handleClick = () => {
@@ -32,7 +32,7 @@ const ListingAction = ({ listing }: { listing: ListingType }) => {
 
 
     return (
-        <div className=' w-max space-x-2'>
+        <div className=' w-max flex md:flex-row  flex-colitems-center justify-center'>
             <CustomDialogTrigger content={<DeleteButton listingId={listing._id} title={listing.title} createdAt={listing.createdAt} />} header='Remove Listing' description='Delete existing Listing' >
                 <Trash className='h-5 w-5 hover:text-primary' />
             </CustomDialogTrigger>

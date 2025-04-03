@@ -39,7 +39,8 @@ export const GET = async (req: NextRequest) => {
         const bathroomCount = url.searchParams.get("bathRooms")
         const bedRooms = url.searchParams.get("bedRooms")
 
-        const { tv, kitchen, wifi } = JSON.parse(amenities)
+        // const { tv, kitchen, wifi } = amenities? JSON.parse(amenities):null
+        // @ts-expect-error // weieuhi7
         const price = JSON.parse(url?.searchParams.get("price"))
         await db()
         const filter: any = {}
@@ -68,7 +69,7 @@ export const GET = async (req: NextRequest) => {
         console.log(items)
 
         return NextResponse.json({ items }, { status: 200 })
-    } catch (error) {
+    } catch (error: any) {
         return NextResponse.json({ message: error.message }, { status: 200 })
     }
 }

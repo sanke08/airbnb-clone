@@ -3,12 +3,9 @@ import { db } from '@/lib/db'
 import listingModal from '@/lib/modals/listing.modal'
 import React, { Suspense } from 'react'
 import { ListingType, UserType } from '../../../global.types'
-import img from "../../../public/1.jpg"
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import { Edit, Loader, Trash } from 'lucide-react'
 import ListingAction from '@/components/ListingAction'
-import { BoxSkeleton } from '../page'
+import { BoxSkeleton } from '@/components/BoxSkeleton'
 
 
 
@@ -20,10 +17,14 @@ const page = async () => {
 
     const properties: ListingType[] = await listingModal.find({ creator: user._id })
 
-    if (!properties) return
+    if (!properties) return (
+        <div>
+            You Have No Properties
+        </div>
+    )
 
     return (
-        <Suspense fallback={<BoxSkeleton/>} >
+        <Suspense fallback={<BoxSkeleton />} >
             <div className=' xl:px-60 lg:px-44 md:px-14 sm:px-5 pt-20'>
                 {
                     properties.map((property) => (
@@ -41,10 +42,9 @@ export default page
 
 
 const Card = ({ listing }: { listing: ListingType }) => {
-    console.log(listing.image)
     return (
         <div className=' border-b flex gap-5 items-center py-1 justify-between'>
-            <Image src={img} alt='' className=' w-[5rem] rounded-xl' />
+            <Image src={listing.image[0]} alt='' sizes='100vh' width={0} height={0} className=' w-[5rem] rounded-xl' />
             <p className=' w-[30%]'>{listing.title}</p>
             <p className=' w-[40%]'>Rs. {listing.price} <span className='text-neutral-400 text-xs'>per night</span></p>
             <ListingAction listing={listing} />

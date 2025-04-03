@@ -7,11 +7,11 @@ import { Button } from './ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
-const ListingCardSlider = ({ listingId,img }: { listingId: string ,img:Array<string>}) => {
+const ListingCardSlider = ({ listingId, img }: { listingId: string, img: Array<string> }) => {
 
     const [counter, setCounter] = useState(1)
 
-    const images = [...img    ]
+    const images = [...img]
 
     const moveForward = useCallback(() => {
         if (counter !== images.length)
@@ -40,12 +40,12 @@ const ListingCardSlider = ({ listingId,img }: { listingId: string ,img:Array<str
                 }
             </Link>
 
-            <Button onClick={() => moveBackward()} className={twMerge(' absolute rounded-full w-max h-max  bg-white hover:bg-white/80 text-black p-1 m-0 flex left-0 top-1/2 -translate-y-1/2 justify-center items-center -translate-x-full transition-all duration-300 scale-0',
-                counter !== 1 && " group-hover:translate-x-1 group-hover:scale-100"
+            <Button onClick={() => moveBackward()} className={twMerge(' absolute rounded-full w-max h-max  bg-white hover:bg-white/80 text-black p-1 m-0 flex left-0 top-1/2 -translate-y-1/2 justify-center items-center transition-all duration-300 md:scale-0 -translate-x-full',
+                counter !== 1 && " group-hover:translate-x-1 group-hover:scale-100 -translate-x-0"
             )}>
                 <ChevronLeft className=' h-6 w-6' />
             </Button>
-            <Button onClick={() => moveForward()} className={twMerge(' absolute w-max h-max rounded-full bg-white hover:bg-white/80 text-black p-1 m-0 flex right-0 top-1/2 -translate-y-1/2 justify-center items-center translate-x-full transition-all duration-300 scale-0',
+            <Button onClick={() => moveForward()} className={twMerge(' absolute w-max h-max rounded-full bg-white hover:bg-white/80 text-black p-1 m-0 flex right-0 top-1/2 -translate-y-1/2 justify-center items-center md:translate-x-full transition-all duration-300 md:scale-0',
                 counter !== images.length && " group-hover:-translate-x-1 group-hover:scale-100"
             )}>
                 <ChevronRight className=' h-6 w-6' />

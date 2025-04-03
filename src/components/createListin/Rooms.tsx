@@ -12,10 +12,10 @@ const Rooms = ({ className }: { className: string }) => {
     const handleGuestCnt = (val: number) => {
         dispatch({ type: GUEST_CNT, payload: val })
     }
-    const handleRooms=(val:number)=>{
+    const handleRooms = (val: number) => {
         dispatch({ type: ROOM_CNT, payload: val })
     }
-    const handleBathRooms=(val:number)=>{
+    const handleBathRooms = (val: number) => {
         dispatch({ type: BATHROOM_CNT, payload: val })
     }
 
@@ -23,8 +23,8 @@ const Rooms = ({ className }: { className: string }) => {
 
     return (
         <div className={className} >
-            <p className=' mt-5 pb-5 pl-5 font-semibold'>Share some basic about your place</p>
-            <div className=' w-full px-10 flex flex-col gap-y-5'>
+            <p className=' mt-5 pb-5 md:pl-5 font-semibold'>Share some basic about your place</p>
+            <div className=' w-full md:px-10 flex flex-col gap-y-5'>
                 <div className=' flex justify-between items-center'>
                     <div>
                         <p>Guests</p>

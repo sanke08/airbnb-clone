@@ -12,7 +12,7 @@ interface Props {
     creator: {
       name: string,
       _id: string,
-      image: string
+      image: string[]
     }
   }
 }
@@ -24,7 +24,7 @@ interface Props {
 
 const ListingInfo = ({ listing }: Props) => {
   return (
-    <div className=" flex flex-col h-[200vh] gap-4 w-full">
+    <div className=" flex flex-col min-h-screen gap-4 w-full">
       <div className="flex flex-col gap-2">
         <div className=' font-semibold text-3xl'>
           {listing.title}

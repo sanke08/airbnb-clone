@@ -26,11 +26,11 @@ const Counter = ({ value, onchage }: Props) => {
     return (
         <div className=' flex items-center gap-x-2'>
             <Button onClick={dec} variant={"none"} size={"fit"} className=' rounded-full border-2'>
-                <Minus />
+                <Minus className=' h-5 w-5' />
             </Button>
             {value}
             <Button onClick={inc} variant={"none"} size={"fit"} className=' rounded-full border-2'>
-                <Plus />
+                <Plus className=' h-5 w-5' />
             </Button>
 
         </div>

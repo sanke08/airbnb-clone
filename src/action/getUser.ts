@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next"
 import userModal from "@/lib/modals/user.modal"
 import { db } from "@/lib/db"
-import { authOption } from "@/app/api/auth/[...nextauth]/route"
+import { authOption } from "@/lib/authOptions"
 
 export const getSession = async () => {
     return await getServerSession(authOption)

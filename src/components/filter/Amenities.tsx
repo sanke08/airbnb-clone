@@ -15,21 +15,21 @@ const Amenities = () => {
   return (
     <div className=' mt-4'>
       <p className=' font-semibold text-2xl'>Amenities</p>
-      <div className=' grid grid-cols-4 gap-y-2 w-full'>
+      <div className=' grid grid-cols-2 sm:grid-cols-4 gap-3 w-full'>
         <div className=' flex gap-x-1 items-center'>
-          <p>Wifi</p>
+          <p className=' w-full sm:w-fit'>Wifi</p>
           <Togglebutton value={amenities.wifi} onChange={() => handleChange({ action: amenities.wifi ? amenities.wifi = false : amenities.wifi = true })} />
         </div>
         <div className=' flex gap-x-1 items-center'>
-          <p>AC</p>
+          <p className=' w-full sm:w-fit'>AC</p>
           <Togglebutton value={amenities.ac} onChange={() => handleChange({ action: amenities.ac ? amenities.ac = false : amenities.ac = true })} />
         </div>
         <div className=' flex gap-x-1 items-center'>
-          <p>Kitchen</p>
+          <p className=' w-full sm:w-fit'>Kitchen</p>
           <Togglebutton value={amenities.kitchen} onChange={() => handleChange({ action: amenities.kitchen ? amenities.kitchen = false : amenities.kitchen = true })} />
         </div>
         <div className=' flex gap-x-1 items-center'>
-          <p>TV</p>
+          <p className=' w-full sm:w-fit'>TV</p>
           <Togglebutton value={amenities.tv} onChange={() => handleChange({ action: amenities.tv ? amenities.tv = false : amenities.tv = true })} />
         </div>
       </div>

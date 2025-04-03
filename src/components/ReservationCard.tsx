@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import LikeButton from './listingActionButton/LikeButton'
-import img from "../../public/1.jpg"
+// import img from "../../public/1.jpg"
 import { Button } from './ui/button'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -25,7 +25,7 @@ interface Props {
 }
 
 
-const ReservationCard = ({ isFav, listingId, title, category, price, startDate, endDate, reseravtionId }: Props) => {
+const ReservationCard = ({ isFav, listingId, title, category, price, startDate, endDate, reseravtionId, img }: Props) => {
     const router = useRouter()
     const { mutate, isPending } = useMutation({
         mutationFn: async () => {
@@ -40,14 +40,13 @@ const ReservationCard = ({ isFav, listingId, title, category, price, startDate, 
         }
     })
 
-    console.log(new Date(Date.now()) > new Date(startDate))
 
 
     return (
         <div className=' w-full border overflow-hidden relative rounded-lg p-2 bg-neutral-100 hover:bg-neutral-200 transition-all duration-500'>
             <Link href={`/${listingId}`}>
                 <div className=' relative  w-full flex justify-center aspect-square rounded-lg overflow-hidden'>
-                    <Image src={img} alt='' className=' hover:scale-110 transition-all duration-300 aspect-square' />
+                    <Image src={img} alt='' fill className=' hover:scale-110 transition-all duration-300 aspect-square' />
                 </div>
             </Link>
             <Link href={"/f"} >

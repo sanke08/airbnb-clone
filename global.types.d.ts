@@ -10,7 +10,7 @@ export type ListingType = {
     _id: string
     title: string,
     description: string,
-    image: string,
+    image: string[],
     category: string,
     roomCount: number,
     bathroomCount: number,
@@ -18,8 +18,8 @@ export type ListingType = {
     location: string,
     price: number,
     creator: string | UserType
-    createdAt:Date,
-    type:string
+    createdAt: Date,
+    type: string
 }
 
 export type ReservationType = {
@@ -32,8 +32,8 @@ export type ReservationType = {
 }
 
 
-export type FavType={
-    userId:any,
-    listId:ListingType | string,
-    _id:string
+export type FavType = {
+    userId: any,
+    listId: ListingType | string,
+    _id: string
 }

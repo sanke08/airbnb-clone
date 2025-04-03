@@ -10,10 +10,10 @@ const PriceRange = () => {
     const dispatch = useDispatch()
 
 
-    const handleMinimum = (e) => {
+    const handleMinimum = (e: any) => {
         dispatch({ type: FPRICE, payload: { minimum: e.target.value } })
     }
-    const handleMaximum = (e) => {
+    const handleMaximum = (e: any) => {
         dispatch({ type: FPRICE, payload: { maximum: e.target.value } })
     }
 

@@ -27,18 +27,21 @@ const HotelImage = ({ className }: { className: string }) => {
 
 
   return (
-    <div className={twMerge(className, "grid grid-cols-4 gap-2 h-fit items-end justify-center flex-wrap p-5")} >
-      {
-        urls.map((url) => (
-          <div key={url} className=' w-28 h-28 relative '>
-            <Image src={url} alt='' fill className=' rounded-lg' />
-            <p onClick={() => handleRemove(url)} className=' absolute -top-1 -right-1 bg-rose-500 text-white rounded-full'><X className=' h-5 w-5' /> </p>
-          </div>
-        ))
-      }
+    <div className={twMerge(className, "h-fit md:p-5 pt-4")} >
+      <div className='grid grid-cols-2 md:grid-cols-4 gap-2 items-end justify-center'>
+
+        {
+          urls.map((url) => (
+            <div key={url} className=' w-28 h-28 relative '>
+              <Image src={url} alt='' fill className=' rounded-lg' />
+              <p onClick={() => handleRemove(url)} className=' absolute -top-1 -right-1 bg-rose-500 text-white rounded-full'><X className=' h-5 w-5' /> </p>
+            </div>
+          ))
+        }
+      </div>
       {
         urls.length < 5 &&
-        <div className=' w-max'>
+        <div className=' w-max mx-auto mt-3'>
           <FileUploader endpoint={"imageUploader"} onchange={(value: any) => handleChangeUrl(value)} />
         </div>
       }

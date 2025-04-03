@@ -5,6 +5,7 @@ import React, { Suspense } from 'react'
 import { ListingType } from '../../global.types'
 import favouriteModal from '@/lib/modals/favourite.modal'
 import { getUser } from '@/action/getUser'
+import { BoxSkeleton } from '@/components/BoxSkeleton'
 
 
 interface Props {
@@ -20,7 +21,6 @@ interface Props {
 }
 
 const page = async ({ searchParams }: Props) => {
-  await db()
   const filter: any = {}
 
   if (searchParams.roomCount) filter.roomCount = { $gte: parseInt(searchParams.roomCount) }
@@ -32,6 +32,7 @@ const page = async ({ searchParams }: Props) => {
   if (searchParams.category) filter.category = searchParams.category
 
 
+  await db()
   const listings: ListingType[] = await listingModal.find(filter)
   const user = await getUser()
   const favourites = user ? await favouriteModal.find({ userId: user._id }) : []
@@ -40,12 +41,12 @@ const page = async ({ searchParams }: Props) => {
       <Suspense fallback={<BoxSkeleton />}  >
         {
           listings.length ?
-            <div className=' grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 my-3'>
+            <div className=' grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 my-3'>
               {
                 listings && listings.map(listing => {
                   const isFav = favourites.find((fav) => fav.listId.equals(listing._id))
                   return (
-                    <ListingCard key={listing._id} img={listing.image} listingId={`${listing._id}`} category={listing.category} price={listing.price} title={listing.title} isFav={!!isFav} createdAt={listing.createdAt}/>
+                    <ListingCard key={listing._id} img={listing.image} listingId={`${listing._id}`} category={listing.category} price={listing.price} title={listing.title} isFav={!!isFav} />
                   )
                 }
                 )
@@ -60,25 +61,6 @@ const page = async ({ searchParams }: Props) => {
 }
 
 export default page
-
-export const BoxSkeleton = () => {
-  return (
-    <div className=' grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-3 my-3'>
-      {
-        [...Array(10)].map((i, j) => (
-          <div key={j} className=' w-full border-2 rounded-lg p-2'>
-            <div className=' bg-neutral-700/50 w-full aspect-square rounded-lg animate-pulse' />
-            <div className=' flex justify-between items-center pt-2 px-2'>
-              <p className=' w-28 py-3 bg-neutral-700/50 animate-pulse rounded-lg' />
-              <p className=' text-xs py-2 bg-neutral-700/50 w-14 animate-pulse rounded-md' />
-            </div>
-            <p className=' p-2 w-20 bg-neutral-700/50 m-2 rounded-lg' />
-          </div>
-        ))
-      }
-    </div>
-  )
-}
 
 
 
