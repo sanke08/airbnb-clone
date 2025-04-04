@@ -7,6 +7,7 @@ import CreateListingModal from "@/components/modal/CreateListingModal";
 import AuthModal from "@/components/modal/AuthModal";
 import { Suspense } from "react";
 import FilterModal from "@/components/modal/FilterModal";
+import { db } from "@/lib/db";
 
 
 export const metadata: Metadata = {
@@ -20,24 +21,25 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-
-  return (
-    <html lang="en" >
-      <body className="">
-        <div className=" w-full h-full md:px-[90px] px-5">
+  const connect = await db()
+  if (connect)
+    return (
+      <html lang="en" >
+        <body className="">
           <ReduxProvider>
-            <Suspense fallback={<p>Loading....</p>}  >
-              <Navbar />
-              <AuthModal />
-              <FilterModal />
-              <CreateListingModal />
-              <div className=" w-full py-3">
-                {children}
-              </div>
-            </Suspense>
+            <div className=" w-full h-full md:px-[90px] px-5">
+              <Suspense fallback={<p>Loading....</p>}  >
+                <Navbar />
+                <AuthModal />
+                <FilterModal />
+                <CreateListingModal />
+                <div className=" w-full py-3">
+                  {children}
+                </div>
+              </Suspense>
+            </div>
           </ReduxProvider>
-        </div>
-      </body>
-    </html>
-  );
+        </body>
+      </html>
+    );
 }
