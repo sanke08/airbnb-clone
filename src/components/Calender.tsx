@@ -155,15 +155,17 @@ const Calender = ({ onChange, selected, className, title, disabledDates }: Props
 
     return (
         <div className={className}>
-            <p className='font-semibold text-lg border-b pl-4 pb-1'>{title}</p>
-            <div className='flex items-center gap-x-2 my-1'>
-                <Button onClick={prevMonth} className='text-black p-1 bg-neutral-200'>
-                    <ChevronLeft className='h-6 w-6' />
-                </Button>
-                {format(firstDateOfCurrentMonth, "MMMM-yyyy")}
-                <Button onClick={nextMonth} className='text-black p-1 bg-neutral-200'>
-                    <ChevronRight className='h-6 w-6' />
-                </Button>
+            <div className=' flex md:flex-col items-center gap-2'>
+                <p className='font-semibold text-lg border-b pl-4 pb-1'>{title}</p>
+                <div className='flex items-center gap-x-2 my-1'>
+                    <Button onClick={prevMonth} className='text-black p-1 bg-neutral-200'>
+                        <ChevronLeft className='h-6 w-6' />
+                    </Button>
+                    {format(firstDateOfCurrentMonth, "MMMM-yyyy")}
+                    <Button onClick={nextMonth} className='text-black p-1 bg-neutral-200'>
+                        <ChevronRight className='h-6 w-6' />
+                    </Button>
+                </div>
             </div>
             <div className={twMerge('w-max grid grid-cols-7 md:gap-3 gap-2 p-2 mt-1')}>
 
